@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="small-12 medium-8 columns">
+    <h3>Products on Sale</h3>
+    <ul class="product-list">
+      <li *ngFor="let product of products"
+          class="product-container">
+          <div class="row">
+            <div class="medium-3 columns text-center">
+              <img src="{{product.ImagePath}}"
+                   class="product_image"/>
+            </div>
+            <div class="medium-9 columns">
+              <h4>
+                <span class="text--bold js-product-name">{{product.ProductName}}</span>
+                <small class="product_price js-product-price">${{product.Price}}</small>
+              </h4>
+              <p class="js-product-desc" style="font-family:Arial, Helvetica, sans-serif;">{{product.Description}}</p>
+              <p>
+                <button type="button"
+                        class="button primary large js-btn-add"
+                        (click)="addProductToCart(product, 1)">Add To Cart</button>
+                <button type="button"
+                        class="button small js-btn-remove"
+                        *ngIf="productInCart(product) | async"
+                        (click)="removeProductFromCart(product, 1)">Remove item from cart</button>
+              </p>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <app-shopping-cart></app-shopping-cart>
+  </div>
+</div>
